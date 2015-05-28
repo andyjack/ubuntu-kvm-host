@@ -53,13 +53,30 @@ sudo virsh -c qemu:///system
 
 /etc/fstab entries have /dev/sda instead of /dev/vda for some reason...
   https://bugs.launchpad.net/ubuntu/+source/vm-builder/+bug/517067
-  Manually update fstab to make swap work.
+  Manually update fstab to make swap work.  Use blkid to get volume uuids for /dev/vda1 and update fstab.
+  Don't put in UUID of swap partition, because of bug below.
+
+sudo aptitude install man-db manpages
 ```
+encrypted swap:
+https://blog.sleeplessbeastie.eu/2012/05/23/ubuntu-how-to-encrypt-swap-partition/
+
+```
+sudo aptitude install ecryptfs-utils
+```
+
+Encrypted swap is a pain, because of a bug:
+
+http://askubuntu.com/questions/462775/swap-not-working-on-clean-14-04-install-using-encrypted-home
+
+Fix:
+
+https://bugs.launchpad.net/ubuntu/+source/ecryptfs-utils/+bug/1310058/comments/22
+
+
 encrypted home dir:
 http://blog.dustinkirkland.com/2011/02/long-overdue-introduction-ecryptfs.html
 
-encrypted swap:
-https://blog.sleeplessbeastie.eu/2012/05/23/ubuntu-how-to-encrypt-swap-partition/
 
 ```
 sudo apt-get install aptitude vagrant tmux git build-essential bash-completion openvpn bridge-utils

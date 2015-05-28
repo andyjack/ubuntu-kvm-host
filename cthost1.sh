@@ -6,6 +6,7 @@ vmbuilder kvm ubuntu                                \
     --addpkg acpid                                  \
     --addpkg vim                                    \
     --addpkg linux-image-generic                    \
+    --addpkg ecryptfs-utils                         \
     --hostname=$VMNAME                              \
     --suite=trusty                                  \
     --flavour=virtual                               \
