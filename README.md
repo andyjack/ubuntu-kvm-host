@@ -41,13 +41,15 @@ sudo vgcreate vg-kyon-mech /dev/sdb4
 
 Turtles, man.
 
+## vmbuilder
+
 ```
 sudo lvcreate -n cthost1 -L 48g vg-kyon-mech
 VMNAME=cthost1
 sudo vmbuilder kvm ubuntu                                               \
                         --addpkg openssh-server                         \
                         --addpkg acpid                                  \
-                        --addpkg linux-image-generic                    \
+                        --addpkg vim                                    \
                         --hostname=$VMNAME                              \
                         --suite=trusty                                  \
                         --flavour=virtual                               \
@@ -64,7 +66,9 @@ sudo vmbuilder kvm ubuntu                                               \
                         --user=andy                                     \
                         --name=andy                                     \
                         --pass=$VMNAME                                  \
-                        --dest=vm/$VMNAME                               \
+                        --dest="$HOME/vm/$VMNAME                        \
+                        --templates="templates"                         \
+                        --copy="copy_files.txt"                         \
                         --ssh-user-key="$HOME/.ssh/authorized_keys"
 
 stuff I need:
@@ -77,6 +81,8 @@ https://blog.sleeplessbeastie.eu/2012/05/23/ubuntu-how-to-encrypt-swap-partition
 
 sudo apt-get install aptitude vagrant tmux git build-essential bash-completion openvpn bridge-utils
 ```
+
+## virt-install
 
 virt-install, to run the iso install process and have an encrypted filesystem.
 ```
@@ -131,3 +137,5 @@ Acquire::http { Proxy "http://192.168.123.4:3142"; };
 
 sudo aptitude install vagrant tmux git build-essential bash-completion openvpn bridge-utils
 ```
+
+vim:nonu
