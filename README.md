@@ -50,6 +50,10 @@ sudo virsh -c qemu:///system
    list --all
    start cthost1
    console cthost1
+
+/etc/fstab entries have /dev/sda instead of /dev/vda for some reason...
+  https://bugs.launchpad.net/ubuntu/+source/vm-builder/+bug/517067
+  Manually update fstab to make swap work.
 ```
 encrypted home dir:
 http://blog.dustinkirkland.com/2011/02/long-overdue-introduction-ecryptfs.html
