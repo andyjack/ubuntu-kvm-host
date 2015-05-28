@@ -25,4 +25,5 @@ vmbuilder kvm ubuntu                                \
     --dest="$HOME/vm/$VMNAME"                       \
     --templates="templates"                         \
     --copy="copy_files.txt"                         \
+    --execscript="cthost1-post.sh"                  \
     --ssh-user-key="$HOME/.ssh/authorized_keys"
