@@ -117,4 +117,6 @@ Acquire::http { Proxy "http://192.168.123.4:3142"; };
 sudo aptitude install vagrant tmux git build-essential bash-completion openvpn bridge-utils
 ```
 
+<!--
 vim:nonu
+-->
