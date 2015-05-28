@@ -46,15 +46,18 @@ Turtles, man.
 ```
 sudo lvcreate -n cthost1 -L 48g vg-kyon-mech
 sudo cthost1.sh
-
-stuff I need:
-
+sudo virsh -c qemu:///system
+   list --all
+   start cthost1
+   console cthost1
+```
 encrypted home dir:
 http://blog.dustinkirkland.com/2011/02/long-overdue-introduction-ecryptfs.html
 
 encrypted swap:
 https://blog.sleeplessbeastie.eu/2012/05/23/ubuntu-how-to-encrypt-swap-partition/
 
+```
 sudo apt-get install aptitude vagrant tmux git build-essential bash-completion openvpn bridge-utils
 ```
 
