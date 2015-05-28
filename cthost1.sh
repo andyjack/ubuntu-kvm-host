@@ -5,6 +5,7 @@ vmbuilder kvm ubuntu                                \
     --addpkg openssh-server                         \
     --addpkg acpid                                  \
     --addpkg vim                                    \
+    --addpkg linux-image-generic                    \
     --hostname=$VMNAME                              \
     --suite=trusty                                  \
     --flavour=virtual                               \
