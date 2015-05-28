@@ -27,4 +27,5 @@ vmbuilder kvm ubuntu                                \
     --templates="templates"                         \
     --copy="copy_files.txt"                         \
     --execscript="$PWD/cthost1-post.sh"             \
+    --firstboot="$PWD/cthost-firstboot.sh"          \
     --ssh-user-key="$HOME/.ssh/authorized_keys"
