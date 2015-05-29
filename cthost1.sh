@@ -13,8 +13,7 @@ vmbuilder kvm ubuntu                                \
     --libvirt qemu:///system                        \
     --mem=6656                                      \
     --raw=/dev/mapper/vg--kyon--mech-cthost1        \
-    --rootsize=42496                                \
-    --swap=6656                                     \
+    --part="$PWD/cthost1-partitions"                \
     --proxy=http://192.168.123.4:3142               \
     --bridge=br0                                    \
     --ip=192.168.123.11                             \

@@ -77,13 +77,13 @@ sudo kill -TERM $(cat /run/openvpn.pid)
 ## kvm under kvm
 
 ```
-echo "options kvm_intel nested=1" | sudo tee -a /etc/modprobe.d/99-local.conf
-sudo modprobe -r kvm
-sudo modprobe kvm
 cat /sys/module/kvm_intel/parameters/nested
 # should be Y
+```
+
 http://www.lucainvernizzi.net/blog/2014/12/03/vagrant-and-libvirt-kvm-qemu-setting-up-boxes-the-easy-way/
 
+```
 curl -O -L https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb
 # to get dependencies for newer vagrant
 sudo aptitude install vagrant
