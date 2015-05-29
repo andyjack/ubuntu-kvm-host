@@ -1,4 +1,4 @@
-root 8192 a1
-swap 6144 a2
-/dummy 34816 a3
-
+root 8192
+swap 6144
+---
+/dummy 34816
