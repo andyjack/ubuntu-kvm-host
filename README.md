@@ -59,14 +59,43 @@ sudo virsh -c qemu:///system
    start cthost1
    console cthost1
 
-sudo aptitude install vagrant tmux git bash-completion openvpn bridge-utils man-db manpages
+sudo aptitude install tmux git bash-completion openvpn man-db manpages
 ```
 
-### openvpn
+## openvpn
 
 https://help.ubuntu.com/community/OpenVPN
 
 Modify /etc/default/openvpn and change so it doesn't start openvpn automatically.
+
+```
+sudo openvpn --daemon --config /etc/openvpn/client.conf --writepid /run/openvpn.pid
+
+sudo kill -TERM $(cat /run/openvpn.pid)
+```
+
+## kvm under kvm
+
+```
+cat /sys/module/kvm_intel/parameters/nested
+# should be Y
+```
+
+http://www.lucainvernizzi.net/blog/2014/12/03/vagrant-and-libvirt-kvm-qemu-setting-up-boxes-the-easy-way/
+
+```
+curl -O -L https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb
+# to get dependencies for newer vagrant
+sudo aptitude install vagrant
+sudo aptitude build-dep ruby-libvirt
+sudo dpkg -i vagrant_1.7.2_x86_64.deb
+vagrant plugin install vagrant-libvirt
+vagrant plugin install vagrant-mutate
+vagrant plugin install vagrant-rekey-ssh
+vagrant box add trusty64 https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box
+vagrant mutate trusty64 libvirt
+sudo usermod -G libvirtd -a andy
+```
 
 ## virt-install
 

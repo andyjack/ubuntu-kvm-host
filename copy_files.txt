@@ -1,2 +1,3 @@
 copy_files/ttyS0.conf /etc/init/ttyS0.conf
 copy_files/02proxy /etc/apt/apt.conf.d/02proxy
+copy_files/99-local.conf /etc/modprobe.d/99-local.conf
