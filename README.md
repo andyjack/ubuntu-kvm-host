@@ -53,7 +53,7 @@ Turtles, man.
 
 ```
 sudo lvcreate -n cthost1 -L 64g vg-kyon-mech
-sudo cthost1.sh
+sudo ./cthost1.sh
 sudo virsh -c qemu:///system
    list --all
    start cthost1
