@@ -2,11 +2,21 @@
 
 VMNAME=cthost1
 vmbuilder kvm ubuntu                                \
-    --addpkg openssh-server                         \
     --addpkg acpid                                  \
-    --addpkg vim                                    \
-    --addpkg linux-image-generic                    \
     --addpkg aptitude                               \
+    --addpkg bash-completion                        \
+    --addpkg curl                                   \
+    --addpkg git                                    \
+    --addpkg libvirt-bin                            \
+    --addpkg linux-image-generic                    \
+    --addpkg lvm2                                   \
+    --addpkg man-db                                 \
+    --addpkg manpages                               \
+    --addpkg openssh-server                         \
+    --addpkg openvpn                                \
+    --addpkg qemu-kvm                               \
+    --addpkg vagrant                                \
+    --addpkg vim                                    \
     --hostname=$VMNAME                              \
     --suite=trusty                                  \
     --flavour=virtual                               \

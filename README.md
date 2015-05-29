@@ -58,8 +58,6 @@ sudo virsh -c qemu:///system
    list --all
    start cthost1
    console cthost1
-
-sudo aptitude install tmux git bash-completion openvpn man-db manpages
 ```
 
 ## openvpn
@@ -85,8 +83,7 @@ http://www.lucainvernizzi.net/blog/2014/12/03/vagrant-and-libvirt-kvm-qemu-setti
 
 ```
 curl -O -L https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb
-# to get dependencies for newer vagrant
-sudo aptitude install vagrant
+# aptitude vagrant was run, to get dependencies for newer vagrant
 sudo aptitude build-dep ruby-libvirt
 sudo dpkg -i vagrant_1.7.2_x86_64.deb
 vagrant plugin install vagrant-libvirt
@@ -94,7 +91,6 @@ vagrant plugin install vagrant-mutate
 vagrant plugin install vagrant-rekey-ssh
 vagrant box add trusty64 https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box
 vagrant mutate trusty64 libvirt
-sudo usermod -G libvirtd -a andy
 ```
 
 ## virt-install

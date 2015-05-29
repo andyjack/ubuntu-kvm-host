@@ -19,4 +19,6 @@ done
 /usr/bin/perl -ni -e 'next if m{/dev/sda1}; print'  /etc/fstab
 /usr/bin/perl -ni -e 'next if /swap/; print'        /etc/fstab
 /usr/bin/perl -ni -e 'next if m{/dummy}; print'     /etc/fstab
+umount /dev/vda3
+echo -e "t\n3\n8e\nw\np" | fdisk /dev/vda
 __EOF__
