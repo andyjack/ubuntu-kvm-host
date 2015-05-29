@@ -7,6 +7,7 @@ vmbuilder kvm ubuntu                                \
     --addpkg bash-completion                        \
     --addpkg curl                                   \
     --addpkg git                                    \
+    --addpkg kpartx                                 \
     --addpkg libvirt-bin                            \
     --addpkg linux-image-generic                    \
     --addpkg lvm2                                   \
