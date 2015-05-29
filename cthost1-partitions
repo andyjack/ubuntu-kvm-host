@@ -1,3 +1,3 @@
-root 8192
+root 16384
 swap 6144
-/dummy 34816
+/dummy 43008

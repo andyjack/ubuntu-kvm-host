@@ -52,7 +52,7 @@ Turtles, man.
 ## vmbuilder
 
 ```
-sudo lvcreate -n cthost1 -L 48g vg-kyon-mech
+sudo lvcreate -n cthost1 -L 64g vg-kyon-mech
 sudo cthost1.sh
 sudo virsh -c qemu:///system
    list --all
