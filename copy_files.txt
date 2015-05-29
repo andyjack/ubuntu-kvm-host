@@ -1,3 +1,2 @@
 copy_files/ttyS0.conf /etc/init/ttyS0.conf
-copy_files/cryptswap1.conf /etc/init/cryptswap1.conf
 copy_files/02proxy /etc/apt/apt.conf.d/02proxy

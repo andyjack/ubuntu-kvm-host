@@ -21,16 +21,24 @@
   * somewhere said to use full path to the ISO, still didn't work
 
 ```
-sudo install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils virtinst
+sudo install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils virtinst lvm2
+```
 
-set up bridged networking: https://help.ubuntu.com/community/KVM/Networking
+## Bridged Networking
 
-picking a storage format... difficult http://serverfault.com/questions/677639/which-is-better-image-format-raw-or-qcow2-to-use-as-a-baseimage-for-other-vms
+Bridged Networking: https://help.ubuntu.com/community/KVM/Networking
 
-# handy - add a local apt-cacher-ng to hold packages
+## Add a local apt-cacher-ng to hold packages
+
 http://www.tecmint.com/apt-cache-server-in-ubuntu/
 
+## LVM
 
+Let KVM machines use disk devices directly for performance.
+
+Some ideas for the future: http://serverfault.com/a/677646
+
+```
 sudo pvcreate /dev/sda4
 sudo pvcreate /dev/sdb4
 sudo vgcreate vg-kyon-ssd /dev/sda4
@@ -51,53 +59,14 @@ sudo virsh -c qemu:///system
    start cthost1
    console cthost1
 
-/etc/fstab entries have /dev/sda instead of /dev/vda for some reason...
-  https://bugs.launchpad.net/ubuntu/+source/vm-builder/+bug/517067
-
-sudo apt-get install aptitude vagrant tmux git build-essential bash-completion openvpn bridge-utils
-sudo aptitude install man-db manpages
-```
-### Encrypted Swap
-
-https://blog.sleeplessbeastie.eu/2012/05/23/ubuntu-how-to-encrypt-swap-partition/
-
-Encrypted swap is a pain, because of a bug:
-
-http://askubuntu.com/questions/462775/swap-not-working-on-clean-14-04-install-using-encrypted-home
-
-Fix:
-
-https://bugs.launchpad.net/ubuntu/+source/ecryptfs-utils/+bug/1310058/comments/22
-
-### Encrypted Home Dir
-
-http://blog.dustinkirkland.com/2011/02/long-overdue-introduction-ecryptfs.html
-
-Logging in via ssh will not decrypt your home dir, but:
-
-http://stephen.rees-carter.net/thought/encrypted-home-directories-ssh-key-authentication
-
-Separate user for using vagrant:
-```
-sudo adduser vagrant
-sudo ecryptfs-migrate-home -u vagrant
-login as vagrant before next reboot
-add .ssh to decrypted home dir as usual
-logout as vagrant
-
-sudo mkdir -m 701 /home/vagrant/.ssh
-sudo touch -m 644 /home/vagrant/.ssh/authorized_keys
-echo '/usr/bin/ecryptfs-mount-private
-cd $HOME' | sudo tee /home/vagrant/.profile
-_EOF_
-(copy in id_rsa.pub)
+sudo aptitude install vagrant tmux git bash-completion openvpn bridge-utils man-db manpages
 ```
 
 ### openvpn
 
 https://help.ubuntu.com/community/OpenVPN
 
-
+Modify /etc/default/openvpn and change so it doesn't start openvpn automatically.
 
 ## virt-install
 
