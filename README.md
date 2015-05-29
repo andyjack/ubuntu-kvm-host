@@ -53,17 +53,13 @@ sudo virsh -c qemu:///system
 
 /etc/fstab entries have /dev/sda instead of /dev/vda for some reason...
   https://bugs.launchpad.net/ubuntu/+source/vm-builder/+bug/517067
-  Manually update fstab to make swap work.  Use blkid to get volume uuids for /dev/vda1 and update fstab.
-  Don't put in UUID of swap partition, because of bug below.
 
+sudo apt-get install aptitude vagrant tmux git build-essential bash-completion openvpn bridge-utils
 sudo aptitude install man-db manpages
 ```
-encrypted swap:
-https://blog.sleeplessbeastie.eu/2012/05/23/ubuntu-how-to-encrypt-swap-partition/
+### Encrypted Swap
 
-```
-sudo aptitude install ecryptfs-utils
-```
+https://blog.sleeplessbeastie.eu/2012/05/23/ubuntu-how-to-encrypt-swap-partition/
 
 Encrypted swap is a pain, because of a bug:
 
@@ -73,18 +69,41 @@ Fix:
 
 https://bugs.launchpad.net/ubuntu/+source/ecryptfs-utils/+bug/1310058/comments/22
 
+### Encrypted Home Dir
 
-encrypted home dir:
 http://blog.dustinkirkland.com/2011/02/long-overdue-introduction-ecryptfs.html
 
+Logging in via ssh will not decrypt your home dir, but:
 
+http://stephen.rees-carter.net/thought/encrypted-home-directories-ssh-key-authentication
+
+Separate user for using vagrant:
 ```
-sudo apt-get install aptitude vagrant tmux git build-essential bash-completion openvpn bridge-utils
+sudo adduser vagrant
+sudo ecryptfs-migrate-home -u vagrant
+login as vagrant before next reboot
+add .ssh to decrypted home dir as usual
+logout as vagrant
+
+sudo mkdir -m 701 /home/vagrant/.ssh
+sudo touch -m 644 /home/vagrant/.ssh/authorized_keys
+echo '/usr/bin/ecryptfs-mount-private
+cd $HOME' | sudo tee /home/vagrant/.profile
+_EOF_
+(copy in id_rsa.pub)
 ```
+
+### openvpn
+
+https://help.ubuntu.com/community/OpenVPN
+
+
 
 ## virt-install
 
 virt-install, to run the iso install process and have an encrypted filesystem.
+
+vmbuilder process is easier.  This is here just for reference.
 ```
 VMNAME=cthost1
 sudo virt-install                                                       \
@@ -98,44 +117,6 @@ sudo virt-install                                                       \
     --graphics none                                                     \
     --extra-args='console=tty0 console=ttyS0,115200n8 serial'           \
     --network=bridge=br0,model=virtio
-```
-
-Encrypted home directory.
-Should get encrypted swap too.
-
-Change `/etc/ssh/sshd_config` AuthorizedKeysFile dir, to use some other dir.
-
-https://help.ubuntu.com/community/SSH/OpenSSH/Keys#Troubleshooting
-
-e.g.:
-```
-sudo mkdir /etc/ssh/userkeys
-sudo mkdir /etc/ssh/userkeys/<user>
-sudo chmod 700 !$
-cat > !$/authorized_keys
-chmod 600 !$
-sudo chmod u-w !$:h
-sudo service ssh restart
-```
-
-Logging in via ssh will not decrypt your home dir, but:
-
-http://stephen.rees-carter.net/thought/encrypted-home-directories-ssh-key-authentication
-
-```
-ssh in
-sudo vim ~/.profile
-# vim start
-/usr/bin/ecryptfs-mount-private
-cd $HOME
-# vim end
-```
-
-```
-andy@cthost1:~$ cat | sudo tee /etc/apt/apt.conf.d/02proxy
-Acquire::http { Proxy "http://192.168.123.4:3142"; };
-
-sudo aptitude install vagrant tmux git build-essential bash-completion openvpn bridge-utils
 ```
 
 <!--

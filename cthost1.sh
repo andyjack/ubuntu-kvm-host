@@ -20,6 +20,7 @@ vmbuilder kvm ubuntu                                \
     --ip=192.168.123.11                             \
     --mask=255.255.255.0                            \
     --dns=192.168.123.2                             \
+    --gw=192.168.123.2                              \
     --user=andy                                     \
     --name=andy                                     \
     --pass=$VMNAME                                  \
@@ -27,5 +28,5 @@ vmbuilder kvm ubuntu                                \
     --templates="templates"                         \
     --copy="copy_files.txt"                         \
     --execscript="$PWD/cthost1-post.sh"             \
-    --firstboot="$PWD/cthost1-firstboot.sh"          \
+    --firstboot="$PWD/cthost1-firstboot.sh"         \
     --ssh-user-key="$HOME/.ssh/authorized_keys"
