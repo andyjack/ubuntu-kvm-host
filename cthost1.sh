@@ -18,6 +18,7 @@ vmbuilder kvm ubuntu                                \
     --addpkg openssh-server                         \
     --addpkg openvpn                                \
     --addpkg qemu-kvm                               \
+    --addpkg tmux                                   \
     --addpkg vagrant                                \
     --addpkg vim                                    \
     --addpkg zlib1g-dev                             \
