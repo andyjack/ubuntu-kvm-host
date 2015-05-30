@@ -5,6 +5,7 @@ vmbuilder kvm ubuntu                                \
     --addpkg acpid                                  \
     --addpkg aptitude                               \
     --addpkg bash-completion                        \
+    --addpkg build-essential                        \
     --addpkg curl                                   \
     --addpkg git                                    \
     --addpkg libvirt-bin                            \
