@@ -23,7 +23,8 @@ vmbuilder kvm ubuntu                                \
     --flavour=virtual                               \
     --libvirt qemu:///system                        \
     --mem=6656                                      \
-    --raw=/dev/mapper/vg--kyon--mech-cthost1        \
+    --raw=/dev/mapper/vg--kyon--mech-cthost1a       \
+    --raw=/dev/mapper/vg--kyon--mech-cthost1b       \
     --part="$PWD/cthost1-partitions"                \
     --proxy=http://192.168.123.4:3142               \
     --bridge=br0                                    \
