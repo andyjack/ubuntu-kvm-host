@@ -84,9 +84,9 @@ Set up storage pool to be used by kvm:
 
 ```
 VIRSH="sudo virsh -c qemu:///system"
-$VIRSH pool-define-as --name cthost1-vg --type logical
-$VIRSH pool-start cthost1-vg
-$VIRSH pool-autostart cthost1-vg
+$VIRSH pool-define-as --type disk --name default --source-dev /dev/vdb --target /dev --source-format dos
+$VIRSH pool-start default
+$VIRSH pool-autostart default
 ```
 
 ## vagrant
