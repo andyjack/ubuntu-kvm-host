@@ -10,17 +10,13 @@ eval $(/sbin/blkid -o export /dev/vda2)
 echo "UUID=$UUID none swap sw 0 0" >> /etc/fstab
 /sbin/swapon -a
 
-# set proper partition type for lvm, can't do this from outside
-umount /dev/vda3
-echo -e "t\n3\n8e\nw\np" | fdisk /dev/vda
-kpartx /dev/vda
-
-### lvm for kvm storage pool
-sudo pvcreate /dev/vda3
-sudo vgcreate cthost1-vg /dev/vda3
-
 ### put andy user into group allowed to use kvm vm's
-sudo usermod -G libvirtd -a andy
+usermod -G libvirtd -a andy
+
+aptitude update
+
+curl -O -L https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb
+dpkg -i vagrant_1.7.2_x86_64.deb
 
 # erase traces of firstboot
 mv /etc/rc.local.orig /etc/rc.local

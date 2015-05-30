@@ -18,5 +18,4 @@ for F in /etc/init/ttyS0.conf /etc/apt/apt.conf.d/02proxy /etc/modprobe.d/99-loc
 done
 /usr/bin/perl -ni -e 'next if m{/dev/sda1}; print'  /etc/fstab
 /usr/bin/perl -ni -e 'next if /swap/; print'        /etc/fstab
-/usr/bin/perl -ni -e 'next if m{/dummy}; print'     /etc/fstab
 __EOF__

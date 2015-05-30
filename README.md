@@ -52,8 +52,7 @@ Turtles, man.
 ## vmbuilder
 
 ```
-sudo lvcreate -n cthost1a -L 22g vg-kyon-mech
-sudo lvcreate -n cthost1b -L 60g vg-kyon-mech
+sudo lvcreate -n cthost1 -L 64g vg-kyon-mech
 sudo ./cthost1.sh
 sudo virsh -c qemu:///system
    list --all
@@ -80,31 +79,13 @@ cat /sys/module/kvm_intel/parameters/nested
 # should be Y
 ```
 
-Set up storage pool to be used by kvm:
-
-```
-VIRSH="sudo virsh -c qemu:///system"
-$VIRSH pool-define-as --type disk --name default --source-dev /dev/vdb --target /dev --source-format dos
-$VIRSH pool-start default
-$VIRSH pool-autostart default
-```
-
 ## vagrant
 
 http://www.lucainvernizzi.net/blog/2014/12/03/vagrant-and-libvirt-kvm-qemu-setting-up-boxes-the-easy-way/
 https://liquidat.wordpress.com/2014/03/03/howto-vagrant-libvirt-multi-multi-machine-ansible-and-puppet/
 
 ```
-curl -O -L https://dl.bintray.com/mitchellh/vagrant/vagrant_1.7.2_x86_64.deb
-# aptitude vagrant was run, to get dependencies for newer vagrant
-sudo aptitude update
-sudo aptitude build-dep ruby-libvirt
-sudo dpkg -i vagrant_1.7.2_x86_64.deb
-vagrant plugin install vagrant-libvirt
-vagrant plugin install vagrant-mutate
-vagrant plugin install vagrant-rekey-ssh
-vagrant box add trusty64 https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box
-vagrant mutate trusty64 libvirt
+vagrant-setup.sh
 ```
 
 ## virt-install

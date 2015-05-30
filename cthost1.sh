@@ -7,10 +7,11 @@ vmbuilder kvm ubuntu                                \
     --addpkg bash-completion                        \
     --addpkg curl                                   \
     --addpkg git                                    \
-    --addpkg kpartx                                 \
     --addpkg libvirt-bin                            \
+    --addpkg libvirt-dev                            \
+    --addpkg libxml2-dev                            \
+    --addpkg libxslt-dev                            \
     --addpkg linux-image-generic                    \
-    --addpkg lvm2                                   \
     --addpkg man-db                                 \
     --addpkg manpages                               \
     --addpkg openssh-server                         \
@@ -18,13 +19,13 @@ vmbuilder kvm ubuntu                                \
     --addpkg qemu-kvm                               \
     --addpkg vagrant                                \
     --addpkg vim                                    \
+    --addpkg zlib1g-dev                             \
     --hostname=$VMNAME                              \
     --suite=trusty                                  \
     --flavour=virtual                               \
     --libvirt qemu:///system                        \
     --mem=6656                                      \
-    --raw=/dev/mapper/vg--kyon--mech-cthost1a       \
-    --raw=/dev/mapper/vg--kyon--mech-cthost1b       \
+    --raw=/dev/mapper/vg--kyon--mech-cthost1        \
     --part="$PWD/cthost1-partitions"                \
     --proxy=http://192.168.123.4:3142               \
     --bridge=br0                                    \
