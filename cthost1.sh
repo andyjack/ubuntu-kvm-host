@@ -28,9 +28,9 @@ vmbuilder kvm ubuntu                                \
     --mask=255.255.255.0                            \
     --dns=192.168.123.2                             \
     --gw=192.168.123.2                              \
-    --user=andy                                     \
-    --name=andy                                     \
-    --pass=$VMNAME                                  \
+    --user=vagrant                                  \
+    --name=vagrant                                  \
+    --pass=vagrant                                  \
     --dest="$HOME/vm/$VMNAME"                       \
     --templates="templates"                         \
     --copy="copy_files.txt"                         \

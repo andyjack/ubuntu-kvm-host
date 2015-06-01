@@ -12,5 +12,8 @@ echo "UUID=$UUID none swap sw 0 0" >> /etc/fstab
 
 aptitude update
 
+# make vagrant-like
+echo "vagrant ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
 # erase traces of firstboot
 mv /etc/rc.local.orig /etc/rc.local
