@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VMNAME=cthost1
+VMNAME=cthost1a
 vmbuilder kvm ubuntu                                \
     --addpkg acpid                                  \
     --addpkg aptitude                               \
@@ -19,8 +19,8 @@ vmbuilder kvm ubuntu                                \
     --suite=trusty                                  \
     --flavour=virtual                               \
     --libvirt qemu:///system                        \
-    --mem=6656                                      \
-    --raw=/dev/mapper/vg--kyon--mech-cthost1a       \
+    --mem=8192                                      \
+    --raw=/dev/mapper/vg--kyon--mech-${VMNAME}      \
     --part="$PWD/cthost1-partitions"                \
     --proxy=http://192.168.123.4:3142               \
     --bridge=br0                                    \
