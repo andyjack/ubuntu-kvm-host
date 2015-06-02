@@ -15,5 +15,7 @@ aptitude update
 # make vagrant-like
 echo "vagrant ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
+rm /etc/apt/apt.conf
+
 # erase traces of firstboot
 mv /etc/rc.local.orig /etc/rc.local
